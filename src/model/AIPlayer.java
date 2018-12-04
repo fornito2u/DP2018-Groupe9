@@ -1,15 +1,15 @@
-package modele;
+package model;
 
 import javax.swing.text.Position;
 import java.util.ArrayList;
 
-public class JoueurOrdinateur {
+public class AIPlayer {
 
-    private Plateau Plateau;
-    private ArrayList<Bateau> ListeBateau;
+    private Board Board;
+    private ArrayList<Boat> ListeBateau;
     private ArrayList<Position> ListeCases;
 
-    public JoueurOrdinateur(){}
+    public AIPlayer(){}
 
     public boolean avoirPerdu(){
         boolean reponse = false;
@@ -28,11 +28,11 @@ public class JoueurOrdinateur {
         return position;
     }
 
-    public modele.Plateau getPlateau() {
-        return Plateau;
+    public model.Board getPlateau() {
+        return Board;
     }
 
-    public ArrayList<Bateau> getListeBateau() {
+    public ArrayList<Boat> getListeBateau() {
         return ListeBateau;
     }
 
@@ -40,11 +40,11 @@ public class JoueurOrdinateur {
         return ListeCases;
     }
 
-    public void setPlateau(modele.Plateau plateau) {
-        Plateau = plateau;
+    public void setPlateau(model.Board board) {
+        Board = board;
     }
 
-    public void setListeBateau(ArrayList<Bateau> listeBateau) {
+    public void setListeBateau(ArrayList<Boat> listeBateau) {
         ListeBateau = listeBateau;
     }
 

@@ -1,8 +1,8 @@
-package modele;
+package model;
 
-public class BateauType2 extends Bateau {
+public class BoatType1 extends Boat {
 
-    public BateauType2()
+    public BoatType1()
     {
         super();
     }

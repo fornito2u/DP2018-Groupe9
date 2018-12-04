@@ -2,14 +2,14 @@ package patternStrategie;
 
 import javax.swing.text.Position;
 
-import modele.Plateau;
+import model.Board;
 
-public class TirCroix implements Strategie {
+public class CrossShot implements Strategie {
 
-    public TirCroix(){}
+    public CrossShot(){}
 
 	@Override
-	public Position getProchainTir(Plateau p) {
+	public Position getProchainTir(Board p) {
 		// TODO Auto-generated method stub
 		return null;
 	}

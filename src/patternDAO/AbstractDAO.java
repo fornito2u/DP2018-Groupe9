@@ -1,15 +1,15 @@
 package patternDAO;
 
-import modele.BatailleNavale;
+import model.NavalBattle;
 
 public class AbstractDAO {
 
     public AbstractDAO(){}
 
-    public BatailleNavale load(){
+    public NavalBattle load(){
 		return null;
 	}
 
-    public void save(BatailleNavale BatailleNavale){}
+    public void save(NavalBattle NavalBattle){}
 
 }

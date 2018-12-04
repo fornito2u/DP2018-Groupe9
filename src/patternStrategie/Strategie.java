@@ -1,11 +1,11 @@
 package patternStrategie;
 
-import modele.Plateau;
-
 import javax.swing.text.Position;
+
+import model.Board;
 
 public interface Strategie {
 
-    public Position getProchainTir(Plateau p);
+    public Position getProchainTir(Board p);
 
 }

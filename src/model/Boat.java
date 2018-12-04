@@ -1,14 +1,14 @@
-package modele;
+package model;
 
 import javax.swing.text.Position;
 
-public abstract class Bateau {
+public abstract class Boat {
 
     protected int longeur;
     protected int pv;
     protected Position position;
 
-    public Bateau(){}
+    public Boat(){}
 
     public void diminuerVie(){}
 

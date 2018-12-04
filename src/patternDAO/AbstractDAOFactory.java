@@ -2,16 +2,16 @@ package patternDAO;
 
 public abstract class AbstractDAOFactory {
 
-    FichierDAOFactory fichierDAOFactory;
+    FileDAOFactory fileDAOFactory;
 
     public AbstractDAOFactory(){}
 
-    public FichierDAOFactory getFileDAOFactory() {
-        return fichierDAOFactory;
+    public FileDAOFactory getFileDAOFactory() {
+        return fileDAOFactory;
     }
 
-    public void setFileDAOFactory(FichierDAOFactory fichierDAOFactory) {
-        this.fichierDAOFactory = fichierDAOFactory;
+    public void setFileDAOFactory(FileDAOFactory fileDAOFactory) {
+        this.fileDAOFactory = fileDAOFactory;
     }
 
 }

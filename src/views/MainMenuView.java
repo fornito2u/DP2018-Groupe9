@@ -8,13 +8,13 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import modele.BatailleNavale;
+import model.NavalBattle;
 
-public class VueMenuPrincipal extends JPanel implements Observer {
+public class MainMenuView extends JPanel implements Observer {
 
-	BatailleNavale bn;
+	NavalBattle bn;
 	
-	public VueMenuPrincipal(BatailleNavale bn) {
+	public MainMenuView(NavalBattle bn) {
 		this.bn = bn;
 		JButton newGame = new JButton("Nouvelle partie");
 		newGame.addActionListener(new ActionListener() {

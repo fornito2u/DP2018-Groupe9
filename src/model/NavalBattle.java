@@ -1,23 +1,23 @@
-package modele;
+package model;
 
 import patternDAO.AbstractDAOFactory;
-import patternFactory.EpoqueFactory;
+import patternFactory.EraFactory;
 import patternStrategie.Strategie;
 
 import java.util.Observable;
 
 import javax.swing.text.Position;
 
-public class BatailleNavale extends Observable {
+public class NavalBattle extends Observable {
 
     Strategie Strategie;
-    EpoqueFactory EpoqueFactory;
+    EraFactory EraFactory;
     AbstractDAOFactory AbstractDAOFactory;
-    JoueurHumain JoueurHumain;
-    JoueurOrdinateur JoueurOrdinateur;
+    HumanPlayer HumanPlayer;
+    AIPlayer AIPlayer;
     Position caseSelectionee;
 
-    public BatailleNavale() {}
+    public NavalBattle() {}
 
     public void tirer(){}
 
@@ -40,20 +40,20 @@ public class BatailleNavale extends Observable {
         return Strategie;
     }
 
-    public patternFactory.EpoqueFactory getEpoqueFactory() {
-        return EpoqueFactory;
+    public patternFactory.EraFactory getEpoqueFactory() {
+        return EraFactory;
     }
 
     public patternDAO.AbstractDAOFactory getAbstractDAOFactory() {
         return AbstractDAOFactory;
     }
 
-    public modele.JoueurHumain getJoueurHumain() {
-        return JoueurHumain;
+    public model.HumanPlayer getJoueurHumain() {
+        return HumanPlayer;
     }
 
-    public modele.JoueurOrdinateur getJoueurOrdinateur() {
-        return JoueurOrdinateur;
+    public model.AIPlayer getJoueurOrdinateur() {
+        return AIPlayer;
     }
 
     public Position getCaseSelectionee() {
@@ -64,20 +64,20 @@ public class BatailleNavale extends Observable {
         Strategie = strategie;
     }
 
-    public void setEpoqueFactory(patternFactory.EpoqueFactory epoqueFactory) {
-        EpoqueFactory = epoqueFactory;
+    public void setEpoqueFactory(patternFactory.EraFactory eraFactory) {
+        EraFactory = eraFactory;
     }
 
     public void setAbstractDAOFactory(patternDAO.AbstractDAOFactory abstractDAOFactory) {
         AbstractDAOFactory = abstractDAOFactory;
     }
 
-    public void setJoueurHumain(modele.JoueurHumain joueurHumain) {
-        JoueurHumain = joueurHumain;
+    public void setJoueurHumain(model.HumanPlayer humanPlayer) {
+        HumanPlayer = humanPlayer;
     }
 
-    public void setJoueurOrdinateur(modele.JoueurOrdinateur joueurOrdinateur) {
-        JoueurOrdinateur = joueurOrdinateur;
+    public void setJoueurOrdinateur(model.AIPlayer aIPlayer) {
+        AIPlayer = aIPlayer;
     }
 
     public void setCaseSelectionee(Position caseSelectionee) {
