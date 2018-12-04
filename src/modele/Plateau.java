@@ -13,7 +13,7 @@ public class Plateau {
     public void coulerBateau(Bateau b){}
 
     public boolean verifierPresenceBateau(Position p){
-        boolean reponse;
+        boolean reponse = false;
         return reponse;
     }
 

@@ -4,9 +4,11 @@ import patternDAO.AbstractDAOFactory;
 import patternFactory.EpoqueFactory;
 import patternStrategie.Strategie;
 
+import java.util.Observable;
+
 import javax.swing.text.Position;
 
-public class BatailleNavale {
+public class BatailleNavale extends Observable {
 
     Strategie Strategie;
     EpoqueFactory EpoqueFactory;
@@ -22,7 +24,7 @@ public class BatailleNavale {
     public void creerPartie(){}
 
     public boolean estValide(Position p){
-        boolean reponse;
+        boolean reponse = false;
         return reponse;
     }
 

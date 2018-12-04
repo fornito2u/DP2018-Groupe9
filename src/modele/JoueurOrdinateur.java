@@ -12,19 +12,19 @@ public class JoueurOrdinateur {
     public JoueurOrdinateur(){}
 
     public boolean avoirPerdu(){
-        boolean reponse;
+        boolean reponse = false;
         return reponse;
     }
 
-    public boolean caseEstTouchée(){
-        boolean reponse;
+    public boolean caseEstTouche(){
+        boolean reponse = false;
         return reponse;
     }
 
     public void subirTir(Position p){}
 
     public Position recupPositionTir(){
-        Position position;
+        Position position = null;
         return position;
     }
 

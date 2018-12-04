@@ -8,6 +8,8 @@ public abstract class EpoqueFactory {
 
     public EpoqueFactory(){}
 
-    public ArrayList<Bateau> creerBateaux() {}
+    public ArrayList<Bateau> creerBateaux() {
+		return null;
+	}
 
 }

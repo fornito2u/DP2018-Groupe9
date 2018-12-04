@@ -12,12 +12,12 @@ public class JoueurHumain {
     public JoueurHumain(){}
 
     public boolean avoirPerdu(){
-        boolean reponse;
+        boolean reponse = false;
         return reponse;
     }
 
-    public boolean caseEstTouchée(){
-        boolean reponse;
+    public boolean caseEstTouche(){
+        boolean reponse = false;
         return reponse;
     }
 
