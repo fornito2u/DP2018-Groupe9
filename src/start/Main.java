@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import modele.BatailleNavale;
-import views.MainMenu;
+import views.MenuPrincipal;
 
 public class Main extends JFrame {
 
@@ -15,7 +15,7 @@ public class Main extends JFrame {
 		setPreferredSize(new Dimension(500,500));
 		
 		BatailleNavale bn = new BatailleNavale();
-		MainMenu mm = new MainMenu(bn);
+		MenuPrincipal mm = new MenuPrincipal(bn);
 		add(mm, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
