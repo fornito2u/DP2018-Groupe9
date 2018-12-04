@@ -8,7 +8,7 @@ public abstract class EraFactory {
 
     public EraFactory(){}
 
-    public ArrayList<Boat> creerBateaux() {
+    public ArrayList<Boat> createBoat() {
 		return null;
 	}
 

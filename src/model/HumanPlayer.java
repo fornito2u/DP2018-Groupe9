@@ -5,46 +5,46 @@ import java.util.ArrayList;
 
 public class HumanPlayer {
 
-    private Board Board;
-    private ArrayList<Boat> ListeBateau;
-    private ArrayList<Position> ListeCases;
+    private Board board;
+    private ArrayList<Boat> boatList;
+    private ArrayList<Position> tileList;
 
     public HumanPlayer(){}
 
-    public boolean avoirPerdu(){
+    public boolean lost(){
         boolean reponse = false;
         return reponse;
     }
 
-    public boolean caseEstTouche(){
+    public boolean tileTouched(){
         boolean reponse = false;
         return reponse;
     }
 
-    public void subirTir(Position p){}
+    public void gettingShot(Position p){}
 
-    public model.Board getPlateau() {
-        return Board;
+    public model.Board getBoard() {
+        return board;
     }
 
-    public ArrayList<Boat> getListeBateau() {
-        return ListeBateau;
+    public ArrayList<Boat> getBoatList() {
+        return boatList;
     }
 
-    public ArrayList<Position> getListeCases() {
-        return ListeCases;
+    public ArrayList<Position> getTileList() {
+        return tileList;
     }
 
-    public void setPlateau(model.Board board) {
-        Board = board;
+    public void setBoard(model.Board board) {
+        this.board = board;
     }
 
-    public void setListeBateau(ArrayList<Boat> listeBateau) {
-        ListeBateau = listeBateau;
+    public void setListeBateau(ArrayList<Boat> boatList) {
+        this.boatList = boatList;
     }
 
-    public void setListeCases(ArrayList<Position> listeCases) {
-        ListeCases = listeCases;
+    public void setListeCases(ArrayList<Position> tileList) {
+        this.tileList = tileList;
     }
 
 }

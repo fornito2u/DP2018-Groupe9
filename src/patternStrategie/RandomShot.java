@@ -9,7 +9,7 @@ public class RandomShot implements Strategie {
     public RandomShot(){}
 
 	@Override
-	public Position getProchainTir(Board p) {
+	public Position getNextShot(Board p) {
 		// TODO Auto-generated method stub
 		return null;
 	}

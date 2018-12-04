@@ -9,7 +9,7 @@ public class CrossShot implements Strategie {
     public CrossShot(){}
 
 	@Override
-	public Position getProchainTir(Board p) {
+	public Position getNextShot(Board p) {
 		// TODO Auto-generated method stub
 		return null;
 	}

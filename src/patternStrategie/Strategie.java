@@ -6,6 +6,6 @@ import model.Board;
 
 public interface Strategie {
 
-    public Position getProchainTir(Board p);
+    public Position getNextShot(Board p);
 
 }
