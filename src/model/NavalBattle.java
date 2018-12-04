@@ -15,26 +15,26 @@ public class NavalBattle extends Observable {
     AbstractDAOFactory AbstractDAOFactory;
     HumanPlayer HumanPlayer;
     AIPlayer AIPlayer;
-    Position caseSelectionee;
+    Position selectedTile;
 
     public NavalBattle() {}
 
-    public void tirer(){}
+    public void shoot(){}
 
-    public void creerPartie(){}
+    public void createGame(){}
 
-    public boolean estValide(Position p){
-        boolean reponse = false;
-        return reponse;
+    public boolean isValid(Position p){
+        boolean answer = false;
+        return answer;
     }
 
-    public void changerJoueurCourant(){}
+    public void changeCurrentPlayer(){}
 
-    public void stockCaseSelectionnee(Position p){}
+    public void stockSelectedTile(Position p){}
 
-    public void sauvegarderPartie(){}
+    public void saveGame(){}
 
-    public void chargerPartie(String nom){}
+    public void loadGame(String name){}
 
     public patternStrategie.Strategie getStrategie() {
         return Strategie;
@@ -48,16 +48,16 @@ public class NavalBattle extends Observable {
         return AbstractDAOFactory;
     }
 
-    public model.HumanPlayer getJoueurHumain() {
+    public model.HumanPlayer getHumanPlayer() {
         return HumanPlayer;
     }
 
-    public model.AIPlayer getJoueurOrdinateur() {
+    public model.AIPlayer getIAPlayer() {
         return AIPlayer;
     }
 
-    public Position getCaseSelectionee() {
-        return caseSelectionee;
+    public Position getSelectedTile() {
+        return selectedTile;
     }
 
     public void setStrategie(patternStrategie.Strategie strategie) {
@@ -80,8 +80,8 @@ public class NavalBattle extends Observable {
         AIPlayer = aIPlayer;
     }
 
-    public void setCaseSelectionee(Position caseSelectionee) {
-        this.caseSelectionee = caseSelectionee;
+    public void setCaseSelectionee(Position selectedTile) {
+        this.selectedTile = selectedTile;
     }
 
 }

@@ -4,34 +4,34 @@ import javax.swing.text.Position;
 
 public abstract class Boat {
 
-    protected int longeur;
-    protected int pv;
+    protected int length;
+    protected int hp;
     protected Position position;
 
     public Boat(){}
 
-    public void diminuerVie(){}
+    public void decreaseHP(){}
 
-    public abstract void appliquerBonus();
+    public abstract void applyBonus();
 
-    public int getLongeur() {
-        return longeur;
+    public int getLength() {
+        return length;
     }
 
-    public int getPv() {
-        return pv;
+    public int getHp() {
+        return hp;
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public void setLongeur(int longeur) {
-        this.longeur = longeur;
+    public void setLength(int length) {
+        this.length = length;
     }
 
-    public void setPv(int pv) {
-        this.pv = pv;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public void setPosition(Position position) {

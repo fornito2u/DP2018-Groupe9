@@ -10,25 +10,25 @@ public class Board {
 	// 2 Si la case ne contient pas de bateau
 	// -1 Si la case contient un bateau touché
 	// -2 Si la case contient un bateau coulé
-    private int[][] plateau;
+    private int[][] board;
 
     public Board() {}
 
-    public void toucher(Position p) {}
+    public void hit(Position p) {}
 
-    public void coulerBateau(Boat b){}
+    public void sinkBoat(Boat b){}
 
-    public boolean verifierPresenceBateau(Position p){
+    public boolean checkBoatPresence(Position p){
         boolean reponse = false;
         return reponse;
     }
 
-    public int[][] getPlateau() {
-        return plateau;
+    public int[][] getBoard() {
+        return board;
     }
 
-    public void setPlateau(int[][] plateau) {
-        this.plateau = plateau;
+    public void setBoard(int[][] board) {
+        this.board = board;
     }
 
 }

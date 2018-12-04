@@ -7,7 +7,9 @@ public class BoatType2 extends Boat {
         super();
     }
 
-    @Override
-    public void appliquerBonus() {}
-
+	@Override
+	public void applyBonus() {
+		// TODO Auto-generated method stub
+		
+	}
 }
