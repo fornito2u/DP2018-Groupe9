@@ -6,16 +6,16 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import modele.BatailleNavale;
-import views.MenuPrincipal;
+import views.VueMenuPrincipal;
 
-public class Main extends JFrame {
+public class Jeu extends JFrame {
 
-	public Main() {
+	public Jeu() {
 		super("Bataille Navale");
 		setPreferredSize(new Dimension(500,500));
 		
 		BatailleNavale bn = new BatailleNavale();
-		MenuPrincipal mm = new MenuPrincipal(bn);
+		VueMenuPrincipal mm = new VueMenuPrincipal(bn);
 		add(mm, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +24,7 @@ public class Main extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new Main();		
+		new Jeu();		
     }
 	
 }

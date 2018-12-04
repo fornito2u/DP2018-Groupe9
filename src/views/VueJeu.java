@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-public class MenuChargement extends JPanel implements Observer {
+public class VueJeu extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {

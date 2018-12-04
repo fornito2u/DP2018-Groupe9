@@ -10,11 +10,11 @@ import javax.swing.JPanel;
 
 import modele.BatailleNavale;
 
-public class MenuPrincipal extends JPanel implements Observer {
+public class VueMenuPrincipal extends JPanel implements Observer {
 
 	BatailleNavale bn;
 	
-	public MenuPrincipal(BatailleNavale bn) {
+	public VueMenuPrincipal(BatailleNavale bn) {
 		this.bn = bn;
 		JButton newGame = new JButton("Nouvelle partie");
 		newGame.addActionListener(new ActionListener() {
