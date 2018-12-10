@@ -47,7 +47,7 @@ public class NewGameView extends JPanel implements Observer{
 		add(menuEra);
 		add(menuStrategie);
 						
-		JButton lauchGame = new JButton("Lancer la partie")
+		JButton lauchGame = new JButton("Lancer la partie");
 		lauchGame.addActionListener(new ActionListener(){
 
 			@Override
