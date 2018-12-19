@@ -1,6 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+
 import javax.swing.text.Position;
+
+import model.Boat;
 
 public class Board {
 
@@ -12,7 +16,9 @@ public class Board {
 	// -2 Si la case contient un bateau coulé
     private int[][] board;
 
-    public Board() {}
+    public Board(int[][] plateau) {}
+    
+    public Board(ArrayList<Boat>listBateau) {}
 
     public void hit(Position p) {}
 

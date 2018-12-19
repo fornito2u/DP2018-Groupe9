@@ -1,6 +1,10 @@
 package model;
 
 import javax.swing.text.Position;
+
+import model.Boat;
+import model.Board;
+
 import java.util.ArrayList;
 
 public class HumanPlayer {
@@ -9,7 +13,7 @@ public class HumanPlayer {
     private ArrayList<Boat> boatList;
     private ArrayList<Position> tileList;
 
-    public HumanPlayer(){}
+    public HumanPlayer(Board p,ArrayList<Boat>listba){}
 
     public boolean lost(){
         boolean reponse = false;

@@ -6,6 +6,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import patternDAO.AbstractDAOFactory;
+import model.NavalBattle;
 import model.NavalBattle;
 import views.GameView;
 import views.LoadMenuView;
@@ -24,8 +26,7 @@ public class Game extends JFrame {
 		super("Bataille Navale");
 		setPreferredSize(new Dimension(500,500));
 		cl = new CardLayout();
-		
-		NavalBattle nb = new NavalBattle();
+		NavalBattle nb = new NavalBattle(AbstractDAOFactory.getAbstractDAOFactory());
 		mmv = new MainMenuView(nb, this);
 		lmv = new LoadMenuView(nb, this);
 		ngv = new NewGameView(nb, this);

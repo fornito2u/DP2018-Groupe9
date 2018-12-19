@@ -1,6 +1,11 @@
 package model;
 
 import javax.swing.text.Position;
+
+import model.Boat;
+import model.Board;
+import patternStrategie.Strategie;
+
 import java.util.ArrayList;
 
 public class AIPlayer {
@@ -9,7 +14,7 @@ public class AIPlayer {
     private ArrayList<Boat> boatList;
     private ArrayList<Position> tileList;
 
-    public AIPlayer(){}
+    public AIPlayer(Board p, ArrayList<Boat>listbat, Strategie strat){}
 
     public boolean lost(){
         boolean reponse = false;

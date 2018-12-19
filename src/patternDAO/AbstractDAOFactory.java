@@ -2,16 +2,10 @@ package patternDAO;
 
 public abstract class AbstractDAOFactory {
 
-    FileDAOFactory fileDAOFactory;
-
-    public AbstractDAOFactory(){}
-
-    public FileDAOFactory getFileDAOFactory() {
-        return fileDAOFactory;
+    public static CsvFactory getAbstractDAOFactory() {
+        return new CsvFactory();
     }
 
-    public void setFileDAOFactory(FileDAOFactory fileDAOFactory) {
-        this.fileDAOFactory = fileDAOFactory;
-    }
+    public abstract BattleDAO getBattleDAO();
 
 }

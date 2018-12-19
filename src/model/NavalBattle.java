@@ -1,87 +1,186 @@
 package model;
 
-import patternDAO.AbstractDAOFactory;
 import patternFactory.EraFactory;
 import patternStrategie.Strategie;
-
+import patternStrategie.RandomShot;
+import java.util.ArrayList;
 import java.util.Observable;
 
-import javax.swing.text.Position;
+import java.io.File;
+import patternDAO.AbstractDAOFactory;
+
+
 
 public class NavalBattle extends Observable {
 
-    Strategie Strategie;
-    EraFactory EraFactory;
-    AbstractDAOFactory AbstractDAOFactory;
-    HumanPlayer HumanPlayer;
-    AIPlayer AIPlayer;
-    Position selectedTile;
+	private ArrayList<String> nomPartiesSauvegardees = new ArrayList<>();
+	private AbstractDAOFactory factory;
+	private AbstractDAOFactory abstractDAOFactory;
+	private Position selectedTile;
+	private HumanPlayer humanPlayer;
+	private AIPlayer aIPlayer;
+	private int currentPlayer; 
+	private static int HUMANPLAYER = 0, IA = 1;
 
-    public NavalBattle() {}
 
-    public void shoot(){}
+	//-----------------------------------------
+	public NavalBattle(AbstractDAOFactory factory) {
+		this.factory = factory;
 
-    public void createGame(){}
+		String currentDirectory = System.getProperty("user.dir");
 
-    public boolean isValid(Position p){
-        boolean answer = false;
-        return answer;
-    }
+		File savesDirectory = new File(currentDirectory + "/sauvegardes");
 
-    public void changeCurrentPlayer(){}
+		if (savesDirectory.exists()) {
+			for (File f : savesDirectory.listFiles()) {
+				
+				String name = f.getName().substring(0, f.getName().indexOf("."));
+				nomPartiesSauvegardees.add(name);
+			}
+		}
 
-    public void stockSelectedTile(Position p){}
+	}
 
-    public void saveGame(){}
+	
 
-    public void loadGame(String name){}
+	public void createGame(EraFactory eraFactory, Strategie strat){
+		ArrayList<Boat> listeBateauxHumain = eraFactory.createBoat();
+		Board plateauHumain = new Board(listeBateauxHumain);
+		humanPlayer = new HumanPlayer(plateauHumain, listeBateauxHumain);
+		
+		ArrayList<Boat> listeBateauxOrdi = eraFactory.createBoat();
+		Board plateauOrdinateur = new Board(listeBateauxOrdi);
+		aIPlayer = new AIPlayer(plateauOrdinateur, listeBateauxOrdi, strat);
+		currentPlayer = HUMANPLAYER;
+		
+		setChanged();
+		notifyObservers();
+		
+	}
 
-    public patternStrategie.Strategie getStrategie() {
-        return Strategie;
-    }
+	public void stockSelectedTile(Position p){}
+	
+	public void shoot(){}
+	
+	public boolean isValid(Position p){
+		boolean answer = false;
+		return answer;
+	}
 
-    public patternFactory.EraFactory getEpoqueFactory() {
-        return EraFactory;
-    }
+	public void changeCurrentPlayer(){}
 
-    public patternDAO.AbstractDAOFactory getAbstractDAOFactory() {
-        return AbstractDAOFactory;
-    }
+	public void saveGame(){}
 
-    public model.HumanPlayer getHumanPlayer() {
-        return HumanPlayer;
-    }
+	public void loadGame(String name){}
 
-    public model.AIPlayer getIAPlayer() {
-        return AIPlayer;
-    }
 
-    public Position getSelectedTile() {
-        return selectedTile;
-    }
 
-    public void setStrategie(patternStrategie.Strategie strategie) {
-        Strategie = strategie;
-    }
+	public ArrayList<String> getNomPartiesSauvegardees() {
+		return nomPartiesSauvegardees;
+	}
 
-    public void setEpoqueFactory(patternFactory.EraFactory eraFactory) {
-        EraFactory = eraFactory;
-    }
 
-    public void setAbstractDAOFactory(patternDAO.AbstractDAOFactory abstractDAOFactory) {
-        AbstractDAOFactory = abstractDAOFactory;
-    }
 
-    public void setJoueurHumain(model.HumanPlayer humanPlayer) {
-        HumanPlayer = humanPlayer;
-    }
+	public void setNomPartiesSauvegardees(ArrayList<String> nomPartiesSauvegardees) {
+		this.nomPartiesSauvegardees = nomPartiesSauvegardees;
+	}
 
-    public void setJoueurOrdinateur(model.AIPlayer aIPlayer) {
-        AIPlayer = aIPlayer;
-    }
 
-    public void setCaseSelectionee(Position selectedTile) {
-        this.selectedTile = selectedTile;
-    }
+
+	public AbstractDAOFactory getFactory() {
+		return factory;
+	}
+
+
+
+	public void setFactory(AbstractDAOFactory factory) {
+		this.factory = factory;
+	}
+
+
+
+	public AbstractDAOFactory getAbstractDAOFactory() {
+		return abstractDAOFactory;
+	}
+
+
+
+	public void setAbstractDAOFactory(AbstractDAOFactory abstractDAOFactory) {
+		this.abstractDAOFactory = abstractDAOFactory;
+	}
+
+
+
+	public Position getSelectedTile() {
+		return selectedTile;
+	}
+
+
+
+	public void setSelectedTile(Position selectedTile) {
+		this.selectedTile = selectedTile;
+	}
+
+
+
+	public HumanPlayer getHumanPlayer() {
+		return humanPlayer;
+	}
+
+
+
+	public void setHumanPlayer(HumanPlayer humanPlayer) {
+		this.humanPlayer = humanPlayer;
+	}
+
+
+
+	public AIPlayer getaIPlayer() {
+		return aIPlayer;
+	}
+
+
+
+	public void setaIPlayer(AIPlayer aIPlayer) {
+		this.aIPlayer = aIPlayer;
+	}
+
+
+
+	public int getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+
+
+	public void setCurrentPlayer(int currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
+
+
+	public static int getHUMANPLAYER() {
+		return HUMANPLAYER;
+	}
+
+
+
+	public static void setHUMANPLAYER(int hUMANPLAYER) {
+		HUMANPLAYER = hUMANPLAYER;
+	}
+
+
+
+	public static int getIA() {
+		return IA;
+	}
+
+
+
+	public static void setIA(int iA) {
+		IA = iA;
+	}
+
+	
 
 }
