@@ -1,41 +1,58 @@
 package model;
 
-import javax.swing.text.Position;
-
 public abstract class Boat {
 
-    protected int length;
-    protected int hp;
-    protected Position position;
+	protected boolean orientation;
+	protected int health;
+	protected int size;
+	protected Position position;
 
-    public Boat(){}
+	public Boat(int health, int size, Position position, boolean orientation) {
+		this.health = health;
+		this.size = size;
+		this.position = position;
+		this.orientation = orientation;
+	}
 
-    public void decreaseHP(){}
+	public boolean decreaseHealth() {
+		health--;
 
-    public abstract void applyBonus();
+		if (health == 0) {
+			return true;
+		}
+		return false;
+	}
 
-    public int getLength() {
-        return length;
-    }
+	public boolean getOrientation(){
+		return orientation;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public int getSize(){
+		return size;
+	}
+	
+	public void setPosition(Position p) {
+		position = p;
+	}
+	
+	public Position getPos(){
+		return this.position;
+	}
+	
+	public int getPosX(){
+		return position.getX();
+	}
+	
+	public int getPosY(){
+		return position.getY();
+	}
 
-    public int getHp() {
-        return hp;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
+	public String toString() {
+		return "(" + health + ", " + size + ", " + position + ", " + orientation + ")";
+	}
 
 }
