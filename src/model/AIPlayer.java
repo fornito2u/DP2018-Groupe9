@@ -11,19 +11,17 @@ public class AIPlayer {
     private Board board;
     private ArrayList<Boat> boatList;
     private ArrayList<Position> tileList;
-    
     ArrayList<Position> hitTileList;
 	ArrayList<Position> missTileList;
-
-	// Stocke le nombre de tirs réussis et ratés effectué par le joueur
-	// Ce n'est pas la même valeur que la taille des deux listes du dessus
-	// Puisque ces listes stockent aussi toutes les cases d'un bateau coulé,
 	int nbMissShot = 0;
 	int nbHitShot = 0;
-
 	ArrayList<Boat> listeBateau;
 	Board plateau;
+	private Strategie strategie;
 	
+	public AIPlayer(Board p, ArrayList<Boat>listbat, Strategie strat){}
+	
+	public void gettingShot(Position p){}
 	
 	public ArrayList<Position> getHitTileList() {
 		return hitTileList;
@@ -84,10 +82,7 @@ public class AIPlayer {
 	public void setTileList(ArrayList<Position> tileList) {
 		this.tileList = tileList;
 	}
-
-	private Strategie strategie;
-
-    public AIPlayer(Board p, ArrayList<Boat>listbat, Strategie strat){}
+ 
 
     public boolean lost(){
         boolean reponse = false;
@@ -99,11 +94,8 @@ public class AIPlayer {
         return reponse;
     }
 
-    public void gettingShot(Position p){}
-
-    public Position getShotPosition(){
-        Position position = null;
-        return position;
+    public Position getShotPosition(ArrayList<Position> hitTiles, ArrayList<Position> missTiles){
+    	return strategie.getNextShot(hitTiles, missTiles);
     }
 
     public model.Board getBoard() {

@@ -13,17 +13,14 @@ import patternDAO.AbstractDAOFactory;
 
 public class NavalBattle extends Observable {
 
-	private ArrayList<String> nomPartiesSauvegardees = new ArrayList<>();
-	private AbstractDAOFactory factory;
-	private AbstractDAOFactory abstractDAOFactory;
 	private Position selectedTile;
-	private HumanPlayer humanPlayer;
 	private AIPlayer aIPlayer;
+	private HumanPlayer humanPlayer;
 	private int currentPlayer; 
 	private static int HUMANPLAYER = 0, IA = 1;
+	private ArrayList<String> SavedFileName = new ArrayList<>();
+	private AbstractDAOFactory factory;
 
-
-	//-----------------------------------------
 	public NavalBattle(AbstractDAOFactory factory) {
 		this.factory = factory;
 
@@ -35,7 +32,7 @@ public class NavalBattle extends Observable {
 			for (File f : savesDirectory.listFiles()) {
 				
 				String name = f.getName().substring(0, f.getName().indexOf("."));
-				nomPartiesSauvegardees.add(name);
+				SavedFileName.add(name);
 			}
 		}
 
@@ -44,13 +41,13 @@ public class NavalBattle extends Observable {
 	
 
 	public void createGame(EraFactory eraFactory, Strategie strat){
-		ArrayList<Boat> listeBateauxHumain = eraFactory.createBoat();
-		Board plateauHumain = new Board(listeBateauxHumain);
-		humanPlayer = new HumanPlayer(plateauHumain, listeBateauxHumain);
+		ArrayList<Boat> humanBoatList = eraFactory.createBoat();
+		Board plateauHumain = new Board(humanBoatList);
+		humanPlayer = new HumanPlayer(plateauHumain, humanBoatList);
 		
-		ArrayList<Boat> listeBateauxOrdi = eraFactory.createBoat();
-		Board plateauOrdinateur = new Board(listeBateauxOrdi);
-		aIPlayer = new AIPlayer(plateauOrdinateur, listeBateauxOrdi, strat);
+		ArrayList<Boat> aIBoatList = eraFactory.createBoat();
+		Board aIBoard = new Board(aIBoatList);
+		aIPlayer = new AIPlayer(aIBoard, aIBoatList, strat);
 		currentPlayer = HUMANPLAYER;
 		
 		setChanged();
@@ -58,16 +55,44 @@ public class NavalBattle extends Observable {
 		
 	}
 
-	public void stockSelectedTile(Position p){}
+	public void stockSelectedTile(Position p){
+		selectedTile = p;
+	}
 	
-	public void shoot(){}
+	public void shoot(){
+		if (currentPlayer == HUMANPLAYER) {
+			aIPlayer.gettingShot(selectedTile);
+			if (!aIPlayer.lost()) {
+				changeCurrentPlayer();
+				setChanged();
+				notifyObservers();
+				shoot();
+			} else {
+				setChanged();
+				notifyObservers();
+			}
+		} else {
+			Position p = aIPlayer.getShotPosition(humanPlayer.getHitTileList(), humanPlayer.getMissTileList());
+			humanPlayer.gettingShot(p);
+			if (!humanPlayer.lost()) {
+				changeCurrentPlayer();
+				setChanged();
+				notifyObservers();
+			} else {
+				setChanged();
+				notifyObservers();
+			}
+		}
+	}
+	
+	public void changeCurrentPlayer(){}
 	
 	public boolean isValid(Position p){
 		boolean answer = false;
 		return answer;
 	}
 
-	public void changeCurrentPlayer(){}
+	
 
 	public void saveGame(){}
 
@@ -75,14 +100,14 @@ public class NavalBattle extends Observable {
 
 
 
-	public ArrayList<String> getNomPartiesSauvegardees() {
-		return nomPartiesSauvegardees;
+	public ArrayList<String> getSavedFileName() {
+		return SavedFileName;
 	}
 
 
 
-	public void setNomPartiesSauvegardees(ArrayList<String> nomPartiesSauvegardees) {
-		this.nomPartiesSauvegardees = nomPartiesSauvegardees;
+	public void setSavedFileName(ArrayList<String> SavedFileName) {
+		this.SavedFileName = SavedFileName;
 	}
 
 
@@ -96,19 +121,6 @@ public class NavalBattle extends Observable {
 	public void setFactory(AbstractDAOFactory factory) {
 		this.factory = factory;
 	}
-
-
-
-	public AbstractDAOFactory getAbstractDAOFactory() {
-		return abstractDAOFactory;
-	}
-
-
-
-	public void setAbstractDAOFactory(AbstractDAOFactory abstractDAOFactory) {
-		this.abstractDAOFactory = abstractDAOFactory;
-	}
-
 
 
 	public Position getSelectedTile() {

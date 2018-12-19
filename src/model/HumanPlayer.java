@@ -9,7 +9,7 @@ public class HumanPlayer {
 
     private Board board;
     private ArrayList<Boat> boatList;
-    private ArrayList<Position> missedTileList;
+    private ArrayList<Position> missTileList;
     private ArrayList<Position> hitTileList;
     int nbMissShot = 0;
 	int nbHitShot = 0;
@@ -43,14 +43,14 @@ public class HumanPlayer {
 		this.boatList = boatList;
 	}
 
-	public void setMissedTileList(ArrayList<Position> missedTileList) {
-		this.missedTileList = missedTileList;
+	public void setMissTileList(ArrayList<Position> missTileList) {
+		this.missTileList = missTileList;
 	}
 
 	public HumanPlayer(Board b, ArrayList<Boat>boatList){
 		board=b;
 		this.boatList= boatList;
-		missedTileList=new ArrayList<Position>();
+		missTileList=new ArrayList<Position>();
 		hitTileList=new ArrayList<Position>();
 	}
 
@@ -85,9 +85,9 @@ public class HumanPlayer {
     }
 
 
-	public ArrayList<Position> getMissedTileList() {
+	public ArrayList<Position> getMissTileList() {
 		// TODO Auto-generated method stub
-		 return missedTileList;
+		 return missTileList;
 	}
 
 }

@@ -47,7 +47,7 @@ public class CsvWriter {
 			}
 							
 			writer.append("Cases ratees ordinateur\n");
-			ArrayList<Position> listeCaseRateeHumain = battle.getHumanPlayer().getMissedTileList();
+			ArrayList<Position> listeCaseRateeHumain = battle.getHumanPlayer().getMissTileList();
 			for (Position p : listeCaseRateeHumain) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
