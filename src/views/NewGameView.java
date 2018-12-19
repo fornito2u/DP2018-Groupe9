@@ -27,6 +27,7 @@ public class NewGameView extends JPanel implements Observer{
 		this.game = g;
 		
 		GridLayout gl = new GridLayout(0,2);
+		setLayout(gl);
 		
 		JLabel labelEra = new JLabel("Choisissez l'époque de la bataille");
 		JRadioButtonMenuItem menuEra = new JRadioButtonMenuItem();
