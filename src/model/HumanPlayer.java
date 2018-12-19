@@ -1,7 +1,5 @@
 package model;
 
-import javax.swing.text.Position;
-
 import model.Boat;
 import model.Board;
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import model.NavalBattle;
 import model.Boat;
 import model.Board;
+import model.Position;
 
 
 public class CsvWriter {
@@ -36,30 +37,30 @@ public class CsvWriter {
 			writer.append("Bateaux humain\n");
 			ArrayList<Boat> bateauHumain = battle.getHumanPlayer().getBoatList();
 			for (Boat b : bateauHumain) {
-				writer.append(b.getVie() + " , " + b.getLongueur() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
+				writer.append(b.getHealth() + " , " + b.getSize() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
 			}
 			
 			// liste des cases touchees par le joueur ordinateur		
 			writer.append("Cases touchees ordinateur\n");
-			ArrayList<Position> listeCaseToucheeHumain = battle.getHumain().getListeCaseTouche();
+			ArrayList<Position> listeCaseToucheeHumain = battle.getHumanPlayer().getHitTileList();
 			for (Position p : listeCaseToucheeHumain) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 			
 			// liste des cases ratees par le joueur ordinateur						
 			writer.append("Cases ratees ordinateur\n");
-			ArrayList<Position> listeCaseRateeHumain = battle.getHumain().getListeCaseRate();
+			ArrayList<Position> listeCaseRateeHumain = battle.getHumanPlayer().getListeCaseRate();
 			for (Position p : listeCaseRateeHumain) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 			
 			// compteur tirs reussis pour le joueur humain
 			writer.append("Tirs reussis humain\n");
-			writer.append(battle.getHumain().getNombreTirsReussis() + "\n");
+			writer.append(battle.getHumanPlayer().getNombreTirsReussis() + "\n");
 
 			// compteur tirs rates pour le joueur humain
 			writer.append("Tirs rates humain\n");
-			writer.append(battle.getHumain().getNombreTirsRates() + "\n");
+			writer.append(battle.getHumanPlayer().getNombreTirsRates() + "\n");
 			
 			// plateau du joueur ordinateur
 			writer.append("Plateau joueur ordinateur\n");
@@ -76,7 +77,7 @@ public class CsvWriter {
 			writer.append("Bateaux ordinateur\n");
 			ArrayList<Bateau> bateauOrdi = battle.getOrdinateur().getListeBateau();
 			for (Bateau b : bateauOrdi) {
-				writer.append(b.getVie() + " , " + b.getLongueur() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
+				writer.append(b.getHealth() + " , " + b.getSize() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
 			}
 			
 			// strategie du joueur ordinateur
