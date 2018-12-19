@@ -30,7 +30,12 @@ public class HumanPlayer {
 		this.tileList = tileList;
 	}
 
-	public HumanPlayer(Board p,ArrayList<Boat>listba){}
+	public HumanPlayer(Board b, ArrayList<Boat>boatList){
+		board=b;
+		this.boatList= boatList;
+		tileList=new ArrayList<Position>();
+		hitTileList=new ArrayList<Position>();
+	}
 
     public boolean lost(){
         boolean reponse = false;
