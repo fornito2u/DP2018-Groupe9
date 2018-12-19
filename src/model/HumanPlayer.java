@@ -12,8 +12,25 @@ public class HumanPlayer {
     private Board board;
     private ArrayList<Boat> boatList;
     private ArrayList<Position> tileList;
+    private ArrayList<Position> hitTileList;
+    
+    public ArrayList<Position> getHitTileList() {
+		return hitTileList;
+	}
 
-    public HumanPlayer(Board p,ArrayList<Boat>listba){}
+	public void setHitTileList(ArrayList<Position> hitTileList) {
+		this.hitTileList = hitTileList;
+	}
+
+	public void setBoatList(ArrayList<Boat> boatList) {
+		this.boatList = boatList;
+	}
+
+	public void setTileList(ArrayList<Position> tileList) {
+		this.tileList = tileList;
+	}
+
+	public HumanPlayer(Board p,ArrayList<Boat>listba){}
 
     public boolean lost(){
         boolean reponse = false;
@@ -27,7 +44,7 @@ public class HumanPlayer {
 
     public void gettingShot(Position p){}
 
-    public model.Board getBoard() {
+    public Board getBoard() {
         return board;
     }
 
@@ -39,6 +56,7 @@ public class HumanPlayer {
         return tileList;
     }
 
+    
     public void setBoard(model.Board board) {
         this.board = board;
     }

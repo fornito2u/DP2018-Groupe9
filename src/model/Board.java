@@ -7,13 +7,9 @@ import javax.swing.text.Position;
 import model.Boat;
 
 public class Board {
-
-	// Tableau d'entier qui représente le plateau de jeu.
-	// Les entiers prennent les valeurs suivantes : 
-	// 1 Pour la présence de bateau
-	// 2 Si la case ne contient pas de bateau
-	// -1 Si la case contient un bateau touché
-	// -2 Si la case contient un bateau coulé
+	
+	final public static int LINESIZE = 10;
+	
     private int[][] board;
 
     public Board(int[][] plateau) {}
@@ -28,6 +24,10 @@ public class Board {
         boolean reponse = false;
         return reponse;
     }
+    
+	public int getValue(int x, int y) {
+		return board[x][y] ;
+		}
 
     public int[][] getBoard() {
         return board;
