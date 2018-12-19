@@ -52,15 +52,15 @@ public abstract class EraFactory {
             zone++;
         }
 
-        Boat bateau = parcoursNormal ? boatList.get(boatList.size() - 1) : boatList.get(0);
-        bateau.setPosition(new Position(sizeHalfLine-1, sizeHalfLine-1));
+        Boat boat = parcoursNormal ? boatList.get(boatList.size() - 1) : boatList.get(0);
+        boat.setPosition(new Position(sizeHalfLine-1, sizeHalfLine-1));
 
         return boatList;
     }
     
-    protected abstract Boat getBateauTresLong();
-    protected abstract Boat getBateauLong();
-    protected abstract Boat getBateauMoyen();
-    protected abstract Boat getBateauCourt();
+    protected abstract Boat getVeryLongBoat();
+    protected abstract Boat getLongBoat();
+    protected abstract Boat getMiddleBoat();
+    protected abstract Boat getShortBoat();
 
 }
