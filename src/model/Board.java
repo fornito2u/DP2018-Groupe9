@@ -3,8 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import model.Boat;
-import modele.Bateau;
-import modele.Position;
+import model.Position;
 
 public class Board {
 	
