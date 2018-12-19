@@ -64,10 +64,10 @@ public class CsvWriter {
 			
 			// plateau du joueur ordinateur
 			writer.append("Plateau joueur ordinateur\n");
-			Plateau plateauOrdinateur = battle.getOrdinateur().getPlateau();				
+			Board plateauOrdinateur = battle.getaIPlayer().getBoard();				
 			for (int j = 0; j < plateauOrdinateur.LINESIZE; j++) {
 				for (int i = 0; i < plateauOrdinateur.LINESIZE; i++) {					
-					writer.append("" + plateauOrdinateur.getValeur(i, j));
+					writer.append("" + plateauOrdinateur.getValue(i, j));
 					writer.append(csvSeparator);
 				}
 				writer.append("\n");
@@ -75,36 +75,36 @@ public class CsvWriter {
 			
 			// liste des bateaux pour le joueur ordinateur
 			writer.append("Bateaux ordinateur\n");
-			ArrayList<Bateau> bateauOrdi = battle.getOrdinateur().getListeBateau();
-			for (Bateau b : bateauOrdi) {
+			ArrayList<Boat> bateauOrdi = battle.getaIPlayer().getBoatList();
+			for (Boat b : bateauOrdi) {
 				writer.append(b.getHealth() + " , " + b.getSize() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
 			}
 			
 			// strategie du joueur ordinateur
 			writer.append("Strategie ordinateur\n");
-			writer.append(battle.getOrdinateur().getStrategie() + "\n");
+			writer.append(battle.getaIPlayer().getStrategie() + "\n");
 			
 			// liste des cases touchees par le joueur humain
 			writer.append("Cases touchees humain\n");
-			ArrayList<Position> listeCaseToucheeOrdi = battle.getOrdinateur().getListeCaseTouche();
+			ArrayList<Position> listeCaseToucheeOrdi = battle.getaIPlayer().getHitTileList();
 			for (Position p : listeCaseToucheeOrdi) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 
 			// liste des cases ratees par le joueur humain	
 			writer.append("Cases ratees humain\n");
-			ArrayList<Position> listeCaseRateeOrdi = battle.getOrdinateur().getListeCaseRate();
+			ArrayList<Position> listeCaseRateeOrdi = battle.getaIPlayer().getMissTileList();
 			for (Position p : listeCaseRateeOrdi) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 			
 			// compteur tirs reussis pour le joueur ordinateur
 			writer.append("Tirs reussis ordinateur\n");
-			writer.append(battle.getOrdinateur().getNombreTirsReussis() + "\n");
+			writer.append(battle.getaIPlayer().getNbHitShot() + "\n");
 
 			// compteur tirs rates pour le joueur ordinateur
 			writer.append("Tirs rates ordinateur\n");
-			writer.append(battle.getOrdinateur().getNombreTirsRates() + "\n");
+			writer.append(battle.getaIPlayer().getNbMissShot() + "\n");
 		
 			
 			writer.flush();
