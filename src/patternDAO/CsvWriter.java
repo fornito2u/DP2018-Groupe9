@@ -40,29 +40,24 @@ public class CsvWriter {
 				writer.append(b.getHealth() + " , " + b.getSize() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
 			}
 			
-			// liste des cases touchees par le joueur ordinateur		
 			writer.append("Cases touchees ordinateur\n");
 			ArrayList<Position> listeCaseToucheeHumain = battle.getHumanPlayer().getHitTileList();
 			for (Position p : listeCaseToucheeHumain) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
-			
-			// liste des cases ratees par le joueur ordinateur						
+							
 			writer.append("Cases ratees ordinateur\n");
 			ArrayList<Position> listeCaseRateeHumain = battle.getHumanPlayer().getMissedTileList();
 			for (Position p : listeCaseRateeHumain) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 			
-			// compteur tirs reussis pour le joueur humain
 			writer.append("Tirs reussis humain\n");
 			writer.append(battle.getHumanPlayer().getNbHitShot() + "\n");
 
-			// compteur tirs rates pour le joueur humain
 			writer.append("Tirs rates humain\n");
 			writer.append(battle.getHumanPlayer().getNbMissShot() + "\n");
 			
-			// plateau du joueur ordinateur
 			writer.append("Plateau joueur ordinateur\n");
 			Board plateauOrdinateur = battle.getaIPlayer().getBoard();				
 			for (int j = 0; j < plateauOrdinateur.LINESIZE; j++) {
@@ -73,25 +68,21 @@ public class CsvWriter {
 				writer.append("\n");
 			}
 			
-			// liste des bateaux pour le joueur ordinateur
 			writer.append("Bateaux ordinateur\n");
 			ArrayList<Boat> bateauOrdi = battle.getaIPlayer().getBoatList();
 			for (Boat b : bateauOrdi) {
 				writer.append(b.getHealth() + " , " + b.getSize() + " , " + b.getPosX() + " , " + b.getPosY() + " , " + b.getOrientation() + "\n");
 			}
 			
-			// strategie du joueur ordinateur
 			writer.append("Strategie ordinateur\n");
 			writer.append(battle.getaIPlayer().getStrategie() + "\n");
 			
-			// liste des cases touchees par le joueur humain
 			writer.append("Cases touchees humain\n");
 			ArrayList<Position> listeCaseToucheeOrdi = battle.getaIPlayer().getHitTileList();
 			for (Position p : listeCaseToucheeOrdi) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 
-			// liste des cases ratees par le joueur humain	
 			writer.append("Cases ratees humain\n");
 			ArrayList<Position> listeCaseRateeOrdi = battle.getaIPlayer().getMissTileList();
 			for (Position p : listeCaseRateeOrdi) {
