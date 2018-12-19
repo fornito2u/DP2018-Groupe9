@@ -1,17 +1,29 @@
 package patternStrategie;
 
-import javax.swing.text.Position;
 
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import model.Position;
 import model.Board;
 
 public class RandomShot implements Strategie {
 
-    public RandomShot(){}
+	private Random random = new Random();
+	
+	public Position getNextShot(ArrayList<Position> listHitShot, ArrayList<Position> listMissShot) {
+        
+        Position position = new Position(random.nextInt(Board.LINESIZE), random.nextInt(Board.LINESIZE));
+        while (listMissShot.contains(position) || listHitShot.contains(position)) {
+            position = new Position(random.nextInt(Board.LINESIZE), random.nextInt(Board.LINESIZE));
+        }
 
-	@Override
-	public Position getNextShot(Board p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        return position;
+    }
+	
+	public String toString() {
+    	return "RandomShot";
+    }
 
 }

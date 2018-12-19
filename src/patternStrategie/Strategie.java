@@ -1,11 +1,12 @@
 package patternStrategie;
 
-import javax.swing.text.Position;
+import java.util.ArrayList;
 
-import model.Board;
+import model.Position;
+
 
 public interface Strategie {
 
-    public Position getNextShot(Board p);
-
+    public Position getNextShot(ArrayList<Position> listHitShot, ArrayList<Position> listMissShot);
+  
 }
