@@ -34,7 +34,7 @@ public class CsvReader {
 		try {
 			br = new BufferedReader(new FileReader(fileName));
 			
-			while (!(line = br.readLine()).matches("Board joueur human")) {
+			while (!(line = br.readLine()).matches("Plateau joueur human")) {
 				if ((line == "0") || (line == "1")) {
 					battle.setCurrentPlayer(Integer.parseInt(line));
 				}
@@ -68,7 +68,7 @@ public class CsvReader {
 			
 			while (!(line = br.readLine()).matches("Tirs reussis humain")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				human.getMissedTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
+				human.getMissTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 
 			while (!(line = br.readLine()).matches("Tirs rates humain")) {
@@ -107,28 +107,28 @@ public class CsvReader {
 					strategie = new CrossShot();
 			}
 
-			AIPlayer ordinateur = new AIPlayer(p2, aiBoat, strategie);
+			AIPlayer aiPlayer = new AIPlayer(p2, aiBoat, strategie);
 
 			
 			while (!(line = br.readLine()).matches("Cases ratees humain")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				ordinateur.getHitTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
+				aiPlayer.getHitTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 
 			while (!(line = br.readLine()).matches("Tirs reussis ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				ordinateur.getMissTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
+				aiPlayer.getMissTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 
 			while (!(line = br.readLine()).matches("Tirs rates ordinateur")) {
-				ordinateur.setNbHitShot(Integer.parseInt(line));
+				aiPlayer.setNbHitShot(Integer.parseInt(line));
 			}
 
 			while ((line = br.readLine()) != null) {
-				ordinateur.setNbMissShot(Integer.parseInt(line));
+				aiPlayer.setNbMissShot(Integer.parseInt(line));
 			}
 
-			battle.setaIPlayer(ordinateur);
+			battle.setaIPlayer(aiPlayer);
 
 
 		} catch (IOException e) {
