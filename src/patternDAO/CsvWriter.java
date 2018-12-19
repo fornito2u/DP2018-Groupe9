@@ -49,18 +49,18 @@ public class CsvWriter {
 			
 			// liste des cases ratees par le joueur ordinateur						
 			writer.append("Cases ratees ordinateur\n");
-			ArrayList<Position> listeCaseRateeHumain = battle.getHumanPlayer().getListeCaseRate();
+			ArrayList<Position> listeCaseRateeHumain = battle.getHumanPlayer().getMissedTileList();
 			for (Position p : listeCaseRateeHumain) {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 			
 			// compteur tirs reussis pour le joueur humain
 			writer.append("Tirs reussis humain\n");
-			writer.append(battle.getHumanPlayer().getNombreTirsReussis() + "\n");
+			writer.append(battle.getHumanPlayer().getNbHitShot() + "\n");
 
 			// compteur tirs rates pour le joueur humain
 			writer.append("Tirs rates humain\n");
-			writer.append(battle.getHumanPlayer().getNombreTirsRates() + "\n");
+			writer.append(battle.getHumanPlayer().getNbMissShot() + "\n");
 			
 			// plateau du joueur ordinateur
 			writer.append("Plateau joueur ordinateur\n");

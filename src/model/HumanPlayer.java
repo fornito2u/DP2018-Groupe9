@@ -9,10 +9,29 @@ public class HumanPlayer {
 
     private Board board;
     private ArrayList<Boat> boatList;
-    private ArrayList<Position> tileList;
+    private ArrayList<Position> missedTileList;
     private ArrayList<Position> hitTileList;
-    
-    public ArrayList<Position> getHitTileList() {
+    int nbMissShot = 0;
+	int nbHitShot = 0;
+
+	
+    public int getNbMissShot() {
+		return nbMissShot;
+	}
+
+	public void setNbMissShot(int nbMissShot) {
+		this.nbMissShot = nbMissShot;
+	}
+
+	public int getNbHitShot() {
+		return nbHitShot;
+	}
+
+	public void setNbHitShot(int nbHitShot) {
+		this.nbHitShot = nbHitShot;
+	}
+
+	public ArrayList<Position> getHitTileList() {
 		return hitTileList;
 	}
 
@@ -24,14 +43,14 @@ public class HumanPlayer {
 		this.boatList = boatList;
 	}
 
-	public void setTileList(ArrayList<Position> tileList) {
-		this.tileList = tileList;
+	public void setMissedTileList(ArrayList<Position> missedTileList) {
+		this.missedTileList = missedTileList;
 	}
 
 	public HumanPlayer(Board b, ArrayList<Boat>boatList){
 		board=b;
 		this.boatList= boatList;
-		tileList=new ArrayList<Position>();
+		missedTileList=new ArrayList<Position>();
 		hitTileList=new ArrayList<Position>();
 	}
 
@@ -55,10 +74,7 @@ public class HumanPlayer {
         return boatList;
     }
 
-    public ArrayList<Position> getTileList() {
-        return tileList;
-    }
-
+   
     
     public void setBoard(model.Board board) {
         this.board = board;
@@ -68,8 +84,10 @@ public class HumanPlayer {
         this.boatList = boatList;
     }
 
-    public void setListeCases(ArrayList<Position> tileList) {
-        this.tileList = tileList;
-    }
+
+	public ArrayList<Position> getMissedTileList() {
+		// TODO Auto-generated method stub
+		 return missedTileList;
+	}
 
 }
