@@ -89,9 +89,8 @@ public class AIPlayer {
         return reponse;
     }
 
-    public boolean tileTouched(){
-        boolean reponse = false;
-        return reponse;
+    public boolean tileTouched(Position p){
+    	return (missTileList.contains(p) || hitTileList.contains(p));
     }
 
     public Position getShotPosition(ArrayList<Position> hitTiles, ArrayList<Position> missTiles){

@@ -5,7 +5,6 @@ import patternStrategie.Strategie;
 import patternStrategie.RandomShot;
 import java.util.ArrayList;
 import java.util.Observable;
-
 import java.io.File;
 import patternDAO.AbstractDAOFactory;
 
@@ -17,7 +16,7 @@ public class NavalBattle extends Observable {
 	private AIPlayer aIPlayer;
 	private HumanPlayer humanPlayer;
 	private int currentPlayer; 
-	private static int HUMANPLAYER = 0, IA = 1;
+	private static int HUMANPLAYER = 0, AI = 1;
 	private ArrayList<String> SavedFileName = new ArrayList<>();
 	private AbstractDAOFactory factory;
 
@@ -85,20 +84,53 @@ public class NavalBattle extends Observable {
 		}
 	}
 	
-	public void changeCurrentPlayer(){}
+	public void changeCurrentPlayer(){
+		if (currentPlayer == HUMANPLAYER)
+			currentPlayer = AI;
+		else
+			currentPlayer = HUMANPLAYER;
+		
+	}
 	
 	public boolean isValid(Position p){
-		boolean answer = false;
-		return answer;
+		boolean valide = false;
+
+		if (currentPlayer == HUMANPLAYER) {	
+	       
+			valide = !aIPlayer.tileTouched(p);
+		}
+		
+		if (valide)
+			stockSelectedTile(p);
+		
+		return valide;
 	}
 
 	
+	public boolean gameOver() {
+		return (aIPlayer.lost() || humanPlayer.lost());
+	}
 
-	public void saveGame(){}
+	public void saveGame(String fileName){
+		factory.getBattleDAO().saveGame(this, fileName);
+	}
 
-	public void loadGame(String name){}
+	public void loadGame(String fileName){
+		NavalBattle battle = factory.getBattleDAO().loadGame(fileName);
+		this.humanPlayer = battle.getHumanPlayer();
+		this.aIPlayer = battle.getaIPlayer();
+		this.currentPlayer = battle.getCurrentPlayer();
+		
+		setChanged();
+		notifyObservers();
+	}
 
-
+	
+	//--------------------------------------------------------------------------------------------------
+	//-----------------------------------------GETTER & SETTER/-----------------------------------------
+	//--------------------------------------------------------------------------------------------------
+	
+	
 
 	public ArrayList<String> getSavedFileName() {
 		return SavedFileName;
@@ -177,20 +209,20 @@ public class NavalBattle extends Observable {
 
 
 
-	public static void setHUMANPLAYER(int hUMANPLAYER) {
-		HUMANPLAYER = hUMANPLAYER;
+	public static void setHUMANPLAYER(int humanplayer) {
+		HUMANPLAYER = humanplayer;
 	}
 
 
 
 	public static int getIA() {
-		return IA;
+		return AI;
 	}
 
 
 
-	public static void setIA(int iA) {
-		IA = iA;
+	public static void setIA(int ai) {
+		AI = ai;
 	}
 
 	
