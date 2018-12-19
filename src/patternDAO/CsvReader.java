@@ -42,7 +42,7 @@ public class CsvReader {
 
 			int[][] t = new int[10][10];
 			int j = 0;
-			while (!(line = br.readLine()).matches("Boatx human")) {
+			while (!(line = br.readLine()).matches("Bateaux human")) {
 				String[] ligne = line.split(csvBoardSeparator);
 				
 				for (int i = 0; i < t.length; i++) {
@@ -52,44 +52,38 @@ public class CsvReader {
 			}
 			Board p = new Board(t);
 
-			ArrayList<Boat> Boatxhuman = new ArrayList<>();
+			ArrayList<Boat> humanBoat = new ArrayList<>();
 
-			// on recupere les Boatx human
 			while (!(line = br.readLine()).matches("Cases touchees ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				Boatxhuman.add(new BoatType1(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
+				humanBoat.add(new BoatType1(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
 			}
 
-			HumanPlayer human = new HumanPlayer(p, Boatxhuman);
+			HumanPlayer human = new HumanPlayer(p, humanBoat);
 			
-			// on recupere la liste des cases touchees par le joueur ordinateur
 			while (!(line = br.readLine()).matches("Cases ratees ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
 				human.getHitTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 			
-			// on recupere la liste des cases ratees par le joueur ordinateur
-			while (!(line = br.readLine()).matches("Tirs reussis human")) {
+			while (!(line = br.readLine()).matches("Tirs reussis humain")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				human.getListeCaseRate().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
+				human.getMissedTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 
-			// on recupere les tirs reussis du joueur human
-			while (!(line = br.readLine()).matches("Tirs rates human")) {
-				human.setNombreTirsReussis(Integer.parseInt(line));
+			while (!(line = br.readLine()).matches("Tirs rates humain")) {
+				human.setNbHitShot(Integer.parseInt(line));
 			}
 			
-			// on recupere les tirs rates du joueur human
-			while (!(line = br.readLine()).matches("Board joueur ordinateur")) {
-				human.setNombreTirsRates(Integer.parseInt(line));
+			while (!(line = br.readLine()).matches("Plateau joueur ordinateur")) {
+				human.setNbMissShot(Integer.parseInt(line));
 			}
 
-			battle.sethuman(human);
+			battle.setHumanPlayer(human);
 			
-			// on recupere le Board du joueur Ordinateur
 			int[][] t2 = new int[10][10];
 			int j2 = 0;
-			while (!(line = br.readLine()).matches("Boatx ordinateur")) {
+			while (!(line = br.readLine()).matches("Bateaux ordinateur")) {
 				String[] ligne = line.split(csvBoardSeparator);
 				for (int i = 0; i < t2.length; i++) {
 					t2[i][j2] = Integer.parseInt(ligne[i]);
@@ -98,49 +92,43 @@ public class CsvReader {
 			}
 			Board p2 = new Board(t2);
 
-			ArrayList<Boat> BoatxOrdi = new ArrayList<>();
+			ArrayList<Boat> aiBoat = new ArrayList<>();
 			
-			// on recupere les Boatx ordi
 			while (!(line = br.readLine()).matches("Strategie ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				BoatxOrdi.add(new BoatType1(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
+				aiBoat.add(new BoatType1(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
 			}
 
 			Strategie strategie = null;
-			// on recupere la strategie
-			while (!(line = br.readLine()).matches("Cases touchees human")) {
+			while (!(line = br.readLine()).matches("Cases touchees humain")) {
 				if (line.matches("TirAleatoire"))
-					strategie = new TirAleatoire();
+					strategie = new RandomShot();
 				else
-					strategie = new TirCroix();
+					strategie = new CrossShot();
 			}
 
-			JoueurOrdinateur ordinateur = new JoueurOrdinateur(p2, BoatxOrdi, strategie);
+			AIPlayer ordinateur = new AIPlayer(p2, aiBoat, strategie);
 
 			
-			// on recupere la liste des cases touchees par le joueur human
-			while (!(line = br.readLine()).matches("Cases ratees human")) {
+			while (!(line = br.readLine()).matches("Cases ratees humain")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				ordinateur.getTileTouched().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
+				ordinateur.getHitTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 
-			// on recupere la liste des cases ratees par le joueur human
 			while (!(line = br.readLine()).matches("Tirs reussis ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				ordinateur.getListeCaseRate().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
+				ordinateur.getMissTileList().add(new Position(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1])));
 			}
 
-			// on recupere les tirs reussis du joueur ordinateur
 			while (!(line = br.readLine()).matches("Tirs rates ordinateur")) {
-				ordinateur.setNombreTirsReussis(Integer.parseInt(line));
+				ordinateur.setNbHitShot(Integer.parseInt(line));
 			}
 
-			// on recupere les tirs rates du joueur ordinateur
 			while ((line = br.readLine()) != null) {
-				ordinateur.setNombreTirsRates(Integer.parseInt(line));
+				ordinateur.setNbMissShot(Integer.parseInt(line));
 			}
 
-			battle.setOrdinateur(ordinateur);
+			battle.setaIPlayer(ordinateur);
 
 
 		} catch (IOException e) {
