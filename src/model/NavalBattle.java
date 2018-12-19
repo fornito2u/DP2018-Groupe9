@@ -29,7 +29,7 @@ public class NavalBattle extends Observable {
 
 		if (savesDirectory.exists()) {
 			for (File f : savesDirectory.listFiles()) {
-				
+
 				String name = f.getName().substring(0, f.getName().indexOf("."));
 				SavedFileName.add(name);
 			}
@@ -37,27 +37,27 @@ public class NavalBattle extends Observable {
 
 	}
 
-	
+
 
 	public void createGame(EraFactory eraFactory, Strategie strat){
 		ArrayList<Boat> humanBoatList = eraFactory.createBoat();
 		Board plateauHumain = new Board(humanBoatList);
 		humanPlayer = new HumanPlayer(plateauHumain, humanBoatList);
-		
+
 		ArrayList<Boat> aIBoatList = eraFactory.createBoat();
 		Board aIBoard = new Board(aIBoatList);
 		aIPlayer = new AIPlayer(aIBoard, aIBoatList, strat);
 		currentPlayer = HUMANPLAYER;
-		
+
 		setChanged();
 		notifyObservers();
-		
+
 	}
 
 	public void stockSelectedTile(Position p){
 		selectedTile = p;
 	}
-	
+
 	public void shoot(){
 		if (currentPlayer == HUMANPLAYER) {
 			aIPlayer.gettingShot(selectedTile);
@@ -83,30 +83,30 @@ public class NavalBattle extends Observable {
 			}
 		}
 	}
-	
+
 	public void changeCurrentPlayer(){
 		if (currentPlayer == HUMANPLAYER)
 			currentPlayer = AI;
 		else
 			currentPlayer = HUMANPLAYER;
-		
+
 	}
-	
+
 	public boolean isValid(Position p){
 		boolean valide = false;
 
 		if (currentPlayer == HUMANPLAYER) {	
-	       
+
 			valide = !aIPlayer.tileTouched(p);
 		}
-		
+
 		if (valide)
 			stockSelectedTile(p);
-		
+
 		return valide;
 	}
 
-	
+
 	public boolean gameOver() {
 		return (aIPlayer.lost() || humanPlayer.lost());
 	}
@@ -120,17 +120,17 @@ public class NavalBattle extends Observable {
 		this.humanPlayer = battle.getHumanPlayer();
 		this.aIPlayer = battle.getaIPlayer();
 		this.currentPlayer = battle.getCurrentPlayer();
-		
+
 		setChanged();
 		notifyObservers();
 	}
 
-	
+
 	//--------------------------------------------------------------------------------------------------
 	//-----------------------------------------GETTER & SETTER/-----------------------------------------
 	//--------------------------------------------------------------------------------------------------
-	
-	
+
+
 
 	public ArrayList<String> getSavedFileName() {
 		return SavedFileName;
@@ -225,6 +225,6 @@ public class NavalBattle extends Observable {
 		AI = ai;
 	}
 
-	
+
 
 }

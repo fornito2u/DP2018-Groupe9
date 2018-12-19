@@ -8,21 +8,102 @@ import java.util.ArrayList;
 
 public class AIPlayer {
 
-    private Board board;
-    private ArrayList<Boat> boatList;
-    private ArrayList<Position> tileList;
-    ArrayList<Position> hitTileList;
-	ArrayList<Position> missTileList;
-	int nbMissShot = 0;
-	int nbHitShot = 0;
-	ArrayList<Boat> listeBateau;
-	Board plateau;
+	private Board board;
+	private ArrayList<Boat> boatList;
+	private ArrayList<Position> hitTileList;
+	private ArrayList<Position> missTileList;
+	private int nbMissShot = 0;
+	private int nbHitShot = 0;
 	private Strategie strategie;
-	
-	public AIPlayer(Board p, ArrayList<Boat>listbat, Strategie strat){}
-	
-	public void gettingShot(Position p){}
-	
+
+	public AIPlayer(Board p, ArrayList<Boat>listbat, Strategie strat){
+		board=p;
+		boatList=listbat;
+		hitTileList=new ArrayList<Position>();
+		missTileList=new ArrayList<Position>();
+		this.strategie = strat;
+	}
+
+	public void gettingShot(Position p){
+		if(board.checkBoatPresence(p)){
+			int indiceB=this.searchBoat(p);
+			assert(indiceB!=-1);
+			if(boatList.get(indiceB).decreaseHealth()){
+				board.sinkBoat(boatList.get(indiceB),hitTileList);
+
+			}else{
+				board.hit(p);
+				hitTileList.add(p);
+			}
+
+			nbHitShot++;
+
+		}else{
+			missTileList.add(p);
+			nbMissShot++;
+		}
+	}
+
+	public int searchBoat(Position p){
+		boolean found=false;
+		Position pos;
+		int size;
+		int i=-1;
+		while (!found && i<boatList.size()-1){
+			i++;
+			pos=boatList.get(i).getPos();
+			size=boatList.get(i).getSize();
+			boolean orientation=boatList.get(i).getOrientation();
+			if(orientation){
+				for(int l=0;l<size;l++){
+					Position tempY=new Position(pos);	
+					tempY.setY(tempY.getY()+l);
+					if(p.compareTo(tempY)==0){
+						found=true;
+					}
+				}
+			}else{
+				for(int l=0;l<size;l++){
+					Position tempX=new Position(pos);
+					tempX.setX(tempX.getX()+l);
+					if(p.compareTo(tempX)==0){
+						found=true;
+					}
+				}
+			}
+		}
+		if(found){
+			return i;
+		}else{
+			return -1;
+		}
+	}
+
+	public boolean lost(){
+		boolean lost = true;
+
+		for (int i = 0; i < boatList.size(); i++) {
+			if (boatList.get(i).getHealth() > 0) {
+				lost = false;
+				break;
+			}
+		}
+
+		return lost;
+	}
+
+	public boolean tileTouched(Position p){
+		return (missTileList.contains(p) || hitTileList.contains(p));
+	}
+
+	public Position getShotPosition(ArrayList<Position> hitTiles, ArrayList<Position> missTiles){
+		return strategie.getNextShot(hitTiles, missTiles);
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	//-----------------------------------------GETTER & SETTER/-----------------------------------------
+	//--------------------------------------------------------------------------------------------------	    
+
 	public ArrayList<Position> getHitTileList() {
 		return hitTileList;
 	}
@@ -63,13 +144,6 @@ public class AIPlayer {
 		this.strategie = strategie;
 	}
 
-	public ArrayList<Boat> getListeBateau() {
-		return listeBateau;
-	}
-
-	public Board getPlateau() {
-		return plateau;
-	}
 
 	public void setBoard(Board board) {
 		this.board = board;
@@ -79,46 +153,19 @@ public class AIPlayer {
 		this.boatList = boatList;
 	}
 
-	public void setTileList(ArrayList<Position> tileList) {
-		this.tileList = tileList;
+	public model.Board getBoard() {
+		return board;
 	}
- 
 
-    public boolean lost(){
-        boolean reponse = false;
-        return reponse;
-    }
+	public ArrayList<Boat> getBoatList() {
+		return boatList;
+	}
 
-    public boolean tileTouched(Position p){
-    	return (missTileList.contains(p) || hitTileList.contains(p));
-    }
+	public void setPlateau(model.Board board) {
+		this.board = board;
+	}
 
-    public Position getShotPosition(ArrayList<Position> hitTiles, ArrayList<Position> missTiles){
-    	return strategie.getNextShot(hitTiles, missTiles);
-    }
-
-    public model.Board getBoard() {
-        return board;
-    }
-
-    public ArrayList<Boat> getBoatList() {
-        return boatList;
-    }
-
-    public ArrayList<Position> getTileList() {
-        return tileList;
-    }
-
-    public void setPlateau(model.Board board) {
-        this.board = board;
-    }
-
-    public void setListeBateau(ArrayList<Boat> boatList) {
-        this.boatList = boatList;
-    }
-
-    public void setListeCases(ArrayList<Position> tileList) {
-        this.tileList = tileList;
-    }
-
+	public void setListeBateau(ArrayList<Boat> boatList) {
+		this.boatList = boatList;
+	}
 }
