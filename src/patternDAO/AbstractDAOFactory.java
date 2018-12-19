@@ -2,7 +2,7 @@ package patternDAO;
 
 public abstract class AbstractDAOFactory {
 
-    public static CsvFactory getAbstractDAOFactory() {
+    public static AbstractDAOFactory getAbstractDAOFactory() {
         return new CsvFactory();
     }
 
