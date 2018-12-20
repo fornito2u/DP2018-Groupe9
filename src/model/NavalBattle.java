@@ -120,7 +120,6 @@ public class NavalBattle extends Observable {
 		this.humanPlayer = battle.getHumanPlayer();
 		this.aIPlayer = battle.getaIPlayer();
 		this.currentPlayer = battle.getCurrentPlayer();
-
 		setChanged();
 		notifyObservers();
 	}
