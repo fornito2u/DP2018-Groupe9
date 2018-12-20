@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import patternDAO.AbstractDAOFactory;
 import model.NavalBattle;
 import model.Boat;
-import model.BoatType1;
 import model.HumanPlayer;
 import model.AIPlayer;
 import model.Board;
@@ -56,7 +55,7 @@ public class CsvReader {
 
 			while (!(line = br.readLine()).matches("Cases touchees ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				humanBoat.add(new BoatType1(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
+				humanBoat.add(new Boat(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
 			}
 
 			HumanPlayer human = new HumanPlayer(p, humanBoat);
@@ -96,7 +95,7 @@ public class CsvReader {
 			
 			while (!(line = br.readLine()).matches("Strategie ordinateur")) {
 				String[] ligne = line.split(csvPositionSeparator);
-				aiBoat.add(new BoatType1(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
+				aiBoat.add(new Boat(Integer.parseInt(ligne[0]), Integer.parseInt(ligne[1]), new Position(Integer.parseInt(ligne[2]), Integer.parseInt(ligne[3])), Boolean.parseBoolean(ligne[4])));
 			}
 
 			Strategie strategie = null;

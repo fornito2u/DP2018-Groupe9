@@ -1,11 +1,11 @@
 package model;
 
-public abstract class Boat {
+public class Boat {
 
-	protected boolean orientation;
-	protected int health;
-	protected int size;
-	protected Position position;
+	private boolean orientation;
+	private int health;
+	private int size;
+	private Position position;
 
 	public Boat(int health, int size, Position position, boolean orientation) {
 		this.health = health;
