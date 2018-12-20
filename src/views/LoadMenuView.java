@@ -76,7 +76,7 @@ public class LoadMenuView extends JPanel implements Observer {
 
                 savedGamesList.clearSelection();
                 playButton.setEnabled(false);             
-                game.switchToPanel("jeu");
+                game.switchToPanel("game");
             }
         });
 

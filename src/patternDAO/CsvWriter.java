@@ -89,11 +89,9 @@ public class CsvWriter {
 				writer.append(p.getX() + " , " + p.getY() + "\n");
 			}
 			
-			// compteur tirs reussis pour le joueur ordinateur
 			writer.append("Tirs reussis ordinateur\n");
 			writer.append(battle.getaIPlayer().getNbHitShot() + "\n");
 
-			// compteur tirs rates pour le joueur ordinateur
 			writer.append("Tirs rates ordinateur\n");
 			writer.append(battle.getaIPlayer().getNbMissShot() + "\n");
 		

@@ -120,7 +120,7 @@ public class GameView extends JPanel implements Observer {
 				if (answer==JOptionPane.YES_OPTION){
 					String currentDirectory = System.getProperty("user.dir");
 
-					File savesDirectory = new File(currentDirectory + "/sauvegardes");
+					File savesDirectory = new File(currentDirectory + "/saves");
 
 					if (!savesDirectory.exists()) {
 						savesDirectory.mkdir();

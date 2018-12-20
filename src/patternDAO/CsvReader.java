@@ -34,7 +34,7 @@ public class CsvReader {
 		try {
 			br = new BufferedReader(new FileReader(fileName));
 			
-			while (!(line = br.readLine()).matches("Plateau joueur human")) {
+			while (!(line = br.readLine()).matches("Plateau joueur humain")) {
 				if ((line == "0") || (line == "1")) {
 					battle.setCurrentPlayer(Integer.parseInt(line));
 				}
@@ -42,7 +42,7 @@ public class CsvReader {
 
 			int[][] t = new int[10][10];
 			int j = 0;
-			while (!(line = br.readLine()).matches("Bateaux human")) {
+			while (!(line = br.readLine()).matches("Bateaux humain")) {
 				String[] ligne = line.split(csvBoardSeparator);
 				
 				for (int i = 0; i < t.length; i++) {
