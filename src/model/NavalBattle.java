@@ -2,7 +2,6 @@ package model;
 
 import patternFactory.EraFactory;
 import patternStrategie.Strategie;
-import patternStrategie.RandomShot;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.io.File;

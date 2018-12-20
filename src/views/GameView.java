@@ -20,7 +20,6 @@ import model.Position;
 import start.Game;
 import java.io.File;
 
-@SuppressWarnings("deprecation")
 public class GameView extends JPanel implements Observer {
 	final public static int BUTTONSNUMBER = 10;
 	private JButton[][] aIBoardButton = new JButton[10][10];

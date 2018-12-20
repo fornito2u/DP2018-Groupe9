@@ -2,14 +2,11 @@ package start;
 
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import model.NavalBattle;
-import patternStrategie.RandomShot;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import patternDAO.AbstractDAOFactory;
-import patternFactory.EraXVI;
 import views.*;
 
 public class Game extends JFrame {

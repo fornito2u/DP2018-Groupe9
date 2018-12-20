@@ -1,6 +1,5 @@
 package patternFactory;
 
-import java.util.ArrayList;
 import model.Boat;
 
 public class EraXX extends EraFactory {
