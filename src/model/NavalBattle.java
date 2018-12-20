@@ -17,7 +17,7 @@ public class NavalBattle extends Observable {
 	private HumanPlayer humanPlayer;
 	private int currentPlayer; 
 	private static int HUMANPLAYER = 0, AI = 1;
-	private ArrayList<String> SavedFileName = new ArrayList<>();
+	private ArrayList<String> savedFileName = new ArrayList<>();
 	private AbstractDAOFactory factory;
 
 	public NavalBattle(AbstractDAOFactory factory) {
@@ -31,7 +31,7 @@ public class NavalBattle extends Observable {
 			for (File f : savesDirectory.listFiles()) {
 
 				String name = f.getName().substring(0, f.getName().indexOf("."));
-				SavedFileName.add(name);
+				savedFileName.add(name);
 			}
 		}
 
@@ -133,16 +133,41 @@ public class NavalBattle extends Observable {
 
 
 	public ArrayList<String> getSavedFileName() {
-		return SavedFileName;
+		return savedFileName;
 	}
 
+	public int getSavedFileNameSize() {
+		return savedFileName.size();
+	}
+	
+	public String getSavedFileName(int index) {
+		return savedFileName.get(index);
+	}
+	
+	public void addSavedFileName(String name) {
+		savedFileName.add(name);
+		setChanged();
+		notifyObservers();
+	}
 
 
 	public void setSavedFileName(ArrayList<String> SavedFileName) {
-		this.SavedFileName = SavedFileName;
+		this.savedFileName = SavedFileName;
+	}
+	
+	public int getNbMissShot(int playerId) {
+		if (playerId == 0)
+			return humanPlayer.getNbMissShot();
+
+		return aIPlayer.getNbMissShot();
 	}
 
+	public int getNbHitShot(int playerId) {
+		if (playerId == 0)
+			return humanPlayer.getNbHitShot();
 
+		return aIPlayer.getNbHitShot();
+	}
 
 	public AbstractDAOFactory getFactory() {
 		return factory;
