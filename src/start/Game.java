@@ -31,7 +31,7 @@ public class Game extends JFrame {
         this.mainPanel.add(new MainMenuView(this), "menu");
         this.mainPanel.add(new NewGameView(this,battle), "newGame");
         this.mainPanel.add(new GameView(this, battle), "game");
-        this.mainPanel.add(new LoadGameView(this, battle), "resumeGame");            
+        this.mainPanel.add(new LoadMenuView(this, battle), "resumeGame");            
         this.add(mainPanel);
         this.pack();
         this.setVisible(true);

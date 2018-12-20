@@ -1,67 +1,62 @@
 package views;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import java.io.File;
 
 import start.Game;
 
-import model.NavalBattle;
+public class MainMenuView extends JPanel {
+    private Game game;
 
-public class MainMenuView extends JPanel implements Observer {
+    private JButton newGameButton, savedGameButton;
 
-	private NavalBattle nb;
-	private Game game;
-	private String name = "mainMenu";
-	
-	public MainMenuView(NavalBattle nb, Game g) {
-		this.nb = nb;
-		this.game = g;
-		setPreferredSize(new Dimension(100,100));
-		setLayout(new GridLayout(4,4));
-		JButton newGame = new JButton("Nouvelle partie");
-		newGame.addActionListener(new ActionListener() {
+    public MainMenuView(Game g) {
+        game = g;
+        buildPanel();
+    }
+    
+    private void buildPanel() {
+        this.setLayout(new GridLayout(1, 2));
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				game.changeView(name);
-			}
-			
-		});
-		JButton loadGame = new JButton("Charger une partie");
-		loadGame.addActionListener(new ActionListener() {
+        newGameButton = new JButton("Nouvelle partie");
+        newGameButton.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.switchToPanel("newGame");
+            }
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		this.add(newGame);
-		this.add(loadGame);
-	}
-	
-	
-	
-	public String getName() {
-		return name;
-	}
+        this.add(newGameButton);
 
+        // Defining a button to continue a previous game
+        savedGameButton = new JButton("Reprendre une partie");
+        savedGameButton.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String currentDirectory = System.getProperty("user.dir");
 
+                File savesDirectory = new File(currentDirectory + "/saves");
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
+                if (!savesDirectory.exists() || (savesDirectory.listFiles().length == 0)) {
+                    JOptionPane.showMessageDialog(null, "Il n'y a aucune sauvegarde actuellement", "Information", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    game.switchToPanel("resumeGame");
+                }
+            }
+        });
+
+        this.add(savedGameButton);
+    }
 
 }
