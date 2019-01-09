@@ -6,21 +6,26 @@ import model.NavalBattle;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import patternDAO.AbstractDAOFactory;
 import views.*;
 
-public class Game extends JFrame {
-
-	  private CardLayout cardLayout;
-	  private JPanel mainPanel;
+public class Game extends JFrame 
+{
+	private CardLayout cardLayout;
+	private JPanel mainPanel;
 	    
-	public Game() {
+	public Game() 
+	{
 		super("Bataille Navale");
         NavalBattle battle = new NavalBattle(AbstractDAOFactory.getAbstractDAOFactory());
         this.buildFrame(battle);
 	}
 	
-	private void buildFrame(NavalBattle battle) {
+	private void buildFrame(NavalBattle battle) 
+	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(600, 500));
         cardLayout = new CardLayout();
@@ -34,8 +39,10 @@ public class Game extends JFrame {
         this.setVisible(true);
 	}
 	
-	public void switchToPanel(String panelName) {
-        switch (panelName) {
+	public void switchToPanel(String panelName) 
+	{
+        switch (panelName) 
+        {
             case "menu" :
                 cardLayout.show(mainPanel, "menu");
                 break;
@@ -50,7 +57,16 @@ public class Game extends JFrame {
         }
     }
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
+		try 
+		{
+		    UIManager.setLookAndFeel(new javax.swing.plaf.metal.MetalLookAndFeel());
+		} 
+		catch (UnsupportedLookAndFeelException e) 
+		{
+		     e.printStackTrace();
+		}
 		new Game();		
     }
 	
